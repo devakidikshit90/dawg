@@ -32,4 +32,10 @@ public interface VideoMeta {
      * @return
      */
     String getVideoCamera();
+    
+    /**
+     * The url of the audio service
+     * @return
+     */
+    String getAudioUrl();
 }

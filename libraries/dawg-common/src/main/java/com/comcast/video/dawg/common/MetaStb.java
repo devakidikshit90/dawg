@@ -42,7 +42,7 @@ import com.comcast.video.stbio.meta.VideoMeta;
  *
  * @author Val Apgar, Prasad Menon
  */
-public class MetaStb implements Comparable<MetaStb>, DawgDevice, StbProperties, IrMeta, VideoMeta, SerialMeta {
+public class MetaStb implements Comparable<MetaStb>, DawgDevice, StbProperties, IrMeta, VideoMeta, SerialMeta{
 
     public static final String ID                    = "id";
     public static final String TAGS                  = "tags";
@@ -77,6 +77,7 @@ public class MetaStb implements Comparable<MetaStb>, DawgDevice, StbProperties, 
     public static final String RACK_NAME             = "rackName";
     public static final String ENVIRONMENT_ID        = "environmentId";
     public static final String HARDWARE_REVISION     = "hardwareRevision";
+    public static final String AUDIOSOURCEURL        = "audioSourceUrl";
 
     private Map<String, Object> data;
 
@@ -296,7 +297,19 @@ public class MetaStb implements Comparable<MetaStb>, DawgDevice, StbProperties, 
     public void setVideoSourceUrl(String videoSourceUrl) {
         data.put(MetaStb.VIDEOSOURCEURL, videoSourceUrl);
     }
-
+    
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String getAudioUrl(){
+    	return (String) data.get(AUDIOSOURCEURL);
+    }    
+    public void setAudioUrl(String audioSourceUrl){
+    	data.put(MetaStb.AUDIOSOURCEURL, audioSourceUrl);
+    }
+    
+    
     /**
      * {@inheritDoc}
      */
