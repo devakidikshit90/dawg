@@ -29,7 +29,11 @@ String deviceId = (String) request.getAttribute(ViewConstants.DEVICE_ID);
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>No Device Found</title>
     </head>
+    <audio autoplay>
+  		<source src="http://10.172.46.121:8080/play1.ogg" type="audio/ogg">
+  		<source src="http://10.172.46.121:8080/play1.mp3" type="audio/mpeg">
+ 	</audio>
+    
 
     <h1>No device found for id: <%=deviceId %></h1>
-
 </html>
