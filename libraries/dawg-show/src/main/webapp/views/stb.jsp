@@ -48,8 +48,8 @@ String stdRemotePage = "/views/remotes/" + remote.getImageSubpath() + "/standard
 String miniRemotePage = "/views/remotes/" + remote.getImageSubpath() + "/mini/miniremote.jsp";
 String fullVideoUrl = "http://" + videoUrl + "/axis-cgi/mjpg/video.cgi"
 + (videoCamera != null ? "?camera=" + videoCamera : "");
-String fullAudioUrlMP3Extension = "http://" + "10.172.46.121" + ":8080/play1.mp3";
-String fullAudioUrlOGGExtension = "http://" + "10.172.46.121" + ":8080/play1.ogg";
+String fullAudioUrlMP3Extension = "http://" + audioUrl + ":8080/play1.mp3";
+String fullAudioUrlOGGExtension = "http://" + audioUrl + ":8080/play1.ogg";
 %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -155,8 +155,8 @@ String fullAudioUrlOGGExtension = "http://" + "10.172.46.121" + ":8080/play1.ogg
                                             src="<%= fullVideoUrl%>"
                                             alt=""></img>
                             <audio autoplay>
-                            	<source src=fullAudioUrlOGGExtension type="audio/ogg">
-  								<source src=fullAudioUrlMP3Extension type="audio/mpeg">
+                            	<source src="<%=fullAudioUrlOGGExtension%>" type="audio/ogg">
+  								<source src="<%=fullAudioUrlMP3Extension%>" type="audio/mpeg">
 							</audio>
                             	
                             <% if (!videoAvail)  {%>
