@@ -33,6 +33,7 @@ The mini remote image
     <div id="volch" style="left:16.5%;top:9%;width:67%;height:12%;position:absolute">
         <jsp:include page="/views/remotes/xr2/standard/volch.jsp"></jsp:include>
     </div>
+    
     <div id="dvr" style="left:19%;top:23%;width:63%;height:12%;position:absolute">
         <jsp:include page="/views/remotes/xr2/standard/dvr.jsp"></jsp:include>
     </div>
