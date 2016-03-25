@@ -1,0 +1,1 @@
+{ "indexes" : [ { "v" : 1, "key" : { "_id" : 1 }, "ns" : "test.persistableDevice", "name" : "_id_" }, { "v" : 1, "key" : { "keys" : 1 }, "ns" : "test.persistableDevice", "name" : "keys", "dropDups" : false, "sparse" : false }, { "v" : 1, "key" : { "reserver" : 1 }, "ns" : "test.persistableDevice", "name" : "reserver", "dropDups" : false, "sparse" : false } ] }
