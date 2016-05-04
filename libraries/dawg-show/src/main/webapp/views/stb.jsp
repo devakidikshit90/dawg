@@ -103,46 +103,17 @@ String fullAudioUrlOGGExtension = "http://" + audioUrl + ":8080/play1.ogg";
 
         <!-- prompt divs -->
         <div id="faded" class="promptFade"></div>
-        <div id="powerPrompt" class="powerPrompt">
-            <jsp:include page="/views/powerPrompt.jsp" />
-        </div>
-        <div id="loadComparisonPrompt" class="loadComparisonPrompt">
-            <jsp:include page="/views/loadComparisonPrompt.jsp" />
-        </div>
+   
 
         <% if (!supported)  { %>
             <div id="notsupported">
                 <jsp:include page="/views/bns-bar.jsp" />
             </div>
         <% } %>
-        <div id="toolbar" class="toolbar">
-            <jsp:include page="/views/componentToolbar.jsp" />
-        </div>
-        <div id="menu" class="menuContainer solid">
-        </div>
+
 
         <div id="mainDiv" class="singleMainDiv">
             <!-- Video, metadata, trace div -->
-            <div id="miniRemoteComp" class="miniRemoteComp">
-                <div class="miniRemoteAndAnyKey">
-                    <div id="anyKeyDiv" class="anyKeyDiv">
-                        <select id="keySelection" class="keySelection">
-                            <% for (Key key : remote.getKeys()) { %>
-                                <option value="<%= key %>"><%= key %></option>
-                            <% } %>
-                        </select>
-                        <input class="btnSendKey" type="button" value="send" onclick="sendKeyFromList()" />
-                    </div>
-                    <div id="remoteMiniDiv" class="miniRemoteContainer">
-                        <div id="remoteMini" class="remoteMini">
-                            <jsp:include page="<%=miniRemotePage %>" />
-                        </div>
-                    </div>
-                </div>
-                <% if (!irAvail)  {%>
-                    <canvas id="miniRemoteNotAvailableOverlay" class="miniRemoteNotAvailableOverlay"></canvas>
-                <% } %>
-            </div>
             <div id="vmt" class="vmt">
 
                 <!-- Video, metadata div -->
@@ -164,81 +135,22 @@ String fullAudioUrlOGGExtension = "http://" + audioUrl + ":8080/play1.ogg";
                             <% } %>
                         <% } %>
                     </div>
-                    <div id="metaDiv" class="metaDiv">
-                        <jsp:include page="/views/metastb.jsp" />
-                    </div>
-                </div>
-                <div id="traceDiv" class="traceDiv" data-deviceId="<%=deviceId%>" data-tracehost="<%=traceHost %>">
-                    <jsp:include page="traceWindow.jsp" />
                 </div>
             </div>
             <div id="standardRemoteDiv" class="standardRemoteDiv">
                 <div id="remote" class="remoteContainer">
-                    <img alt="remote" src="images/remote.png" title="Click to change the remote type" class="changeRemoteButton"><br>
                     <jsp:include page="<%=stdRemotePage %>" />
                 </div>
                 <% if (!irAvail)  {%>
                     <canvas id="stdRemoteNotAvailableOverlay" class="stdRemoteNotAvailableOverlay"></canvas>
                 <% } %>
             </div>
-            <img id="mute" src='<c:url value="/images/remotes/xr2/keys/mute.png" />' onmousedown="clickRemoteButton(event,'MUTE', true)" onmouseup="clickRemoteButton(event,'MUTE', false)"  alt="" style="top:20%;position:absolute"/>
+            <img id="mute" src='<c:url value="/images/remotes/xr2/keys/mute.png" />' onmousedown="clickRemoteButton(event,'MUTE', true)" onmouseup="clickRemoteButton(event,'MUTE', false)"  alt="" style="position:absolute"/>
             
-            <div id="hold_panel" class="hold_panel"></div>
-            <div id="hoverButtons" class="hoverButtons">
-                <div id="fpsPanel" class="fpsPanel">
-                    <div class="verticalAlign fpsButton pointerCursor">fps</div>
-                    <div id="fpsDiv" class="fpsDiv">
-                        <select class="fpsSelector"></select>
-                    </div>
-                </div>
-                <% if (irAvail) {%>
-                <div id="directTunePanel" class="directTunePanel">
-                    <div class="verticalAlign tuneButton pointerCursor">Tune</div>
-                    <div id="directTuneDiv" class="directTuneDiv">
-                        <input type="text" id="channelNumTextBox" class="channelNumTextBox"
-                                                                  name="channelNum" autofocus="autofocus"/>
-                        <img alt="tune" src="images/go.png" title="Tune to channel" class="goButton">
-                    </div>
-                </div>
-                <% } %>
-            </div>
         </div>
 		
         <script type="text/javascript">
-            LayoutDelegator.bind(SingleLayoutManager);
-            toolbar.handler = SingleLayoutManager;
-            hw.callback = SingleLayoutManager;
-            <% if (!videoAvail) { %>
-            LayoutDelegator.addOverlay(new TextOverlay(document.getElementById('videoNotAvailableOverlay'), 'Video Unavailable'));
-            <% } else {%>
-                <% } %>
-                <% if (!irAvail) { %>
-            LayoutDelegator.addOverlay(new TextOverlay(document.getElementById('stdRemoteNotAvailableOverlay'), 'IR Unavailable'));
-            LayoutDelegator.addOverlay(new TextOverlay(document.getElementById('miniRemoteNotAvailableOverlay'), 'IR Unavailable'));
-            <% } %>
 
-            SingleLayoutManager.draw();
-            toolbar.onclick(document.getElementById('videoBox'));
-            <% if (mobile) { %>
-            toolbar.onclick(document.getElementById('remoteMiniBox'));
-            <% } else { %>
-            toolbar.onclick(document.getElementById('traceBox'));
-            toolbar.onclick(document.getElementById('remoteStdBox'));
-            toolbar.onclick(document.getElementById('metadataBox'));
-            <% } %>
-
-            DropDownMenu.bind($('#menu'), $('#menuBox'), $('#loadComparisonPrompt'), $('#faded'), '<%=deviceId%>');
-            SerialManager.bind();
-            VideoRenderer.bind($('#video'), '<%=deviceId%>');
-            VideoRenderer.startVideo();
-            RemoteSelector.bind('.changeRemoteButton','singleView');
-            RemoteSelector.show(${remoteTypes}, '<%= remoteName %>');
-            <% if (irAvail)  {%>
-            DirectTune.bind($('.tuneButton'),$('.directTuneDiv'));
-            <% } %>
-            StandardRemote.bind('<%= remoteName %>');
-            FrameRateOperator.bind($('.fpsButton'), $('.fpsDiv'), $('.fpsSelector'));
-            HoverManager.bind([$('.directTunePanel'), $('.fpsPanel')]);
             
             var audio = document.getElementById('audio');
 
