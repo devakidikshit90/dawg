@@ -116,43 +116,19 @@ String fullAudioUrlOGGExtension = "http://" + audioUrl + ":" + audioPort + "/pla
                 <jsp:include page="/views/bns-bar.jsp" />
             </div>
         <% } %>
-        <div id="toolbar" class="toolbar">
-            <jsp:include page="/views/componentToolbar.jsp" />
-        </div>
         <div id="menu" class="menuContainer solid">
         </div>
 
-        <div id="mainDiv" class="singleMainDiv">
-            <!-- Video, metadata, trace div -->
-            <div id="miniRemoteComp" class="miniRemoteComp">
-                <div class="miniRemoteAndAnyKey">
-                    <div id="anyKeyDiv" class="anyKeyDiv">
-                        <select id="keySelection" class="keySelection">
-                            <% for (Key key : remote.getKeys()) { %>
-                                <option value="<%= key %>"><%= key %></option>
-                            <% } %>
-                        </select>
-                        <input class="btnSendKey" type="button" value="send" onclick="sendKeyFromList()" />
-                    </div>
-                    <div id="remoteMiniDiv" class="miniRemoteContainer">
-                        <div id="remoteMini" class="remoteMini">
-                            <jsp:include page="<%=miniRemotePage %>" />
-                        </div>
-                    </div>
-                </div>
-                <% if (!irAvail)  {%>
-                    <canvas id="miniRemoteNotAvailableOverlay" class="miniRemoteNotAvailableOverlay"></canvas>
-                <% } %>
-            </div>
-            <div id="vmt" class="vmt">
+        <div id="mainDiv" class="singleMainDiv" style="height: 100%;">
+            <div id="vmt" class="vmt" style="height: 90%;">
 
                 <!-- Video, metadata div -->
-                <div id="vm" class="vm">
-                    <div id="videoDiv" class="videoDiv">
+                <div id="vm" class="vm" style="height: 100%; width=100%;">
+                    <div id="videoDiv" class="videoDiv" style="width: 100%;">
                         <% if (hdVideoUrl != null) { %>
-                            <canvas id="video" class="video" data-videourl="<%=hdVideoUrl%>"></canvas>
+                            <canvas id="video" class="video" style="height: 100%; width=100%;" data-videourl="<%=hdVideoUrl%>"></canvas>
                         <% } else { %>
-                            <img id="video" class="video"
+                            <img id="video" class="video" style="height: 100%; width=100%;"
                                             src="<%= fullVideoUrl%>"
                                             alt=""></img>
                             <audio id="audio" autoplay>
@@ -165,15 +141,9 @@ String fullAudioUrlOGGExtension = "http://" + audioUrl + ":" + audioPort + "/pla
                             <% } %>
                         <% } %>
                     </div>
-                    <div id="metaDiv" class="metaDiv">
-                        <jsp:include page="/views/metastb.jsp" />
-                    </div>
-                </div>
-                <div id="traceDiv" class="traceDiv" data-deviceId="<%=deviceId%>" data-tracehost="<%=traceHost %>">
-                    <jsp:include page="traceWindow.jsp" />
                 </div>
             </div>
-            <div id="standardRemoteDiv" class="standardRemoteDiv">
+            <div id="standardRemoteDiv" class="standardRemoteDiv" style="width: 20%">
                 <div id="remote" class="remoteContainer">
                     <img alt="remote" src="images/remote.png" title="Click to change the remote type" class="changeRemoteButton"><br>
                     <jsp:include page="<%=stdRemotePage %>" />
